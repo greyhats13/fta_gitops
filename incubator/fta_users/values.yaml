@@ -18,10 +18,10 @@ imagePullSecrets: []
 # This is to override the chart name.
 nameOverride: ""
 fullnameOverride: ""
-appConfig:
-  database: fta-uses_db_dev
-  host: "10.176.0.3"
-  port: 5432
+# appConfig:
+#   database: fta_users
+#   host: "10.176.0.3"
+#   port: 5432
 
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
@@ -31,6 +31,9 @@ appSecret:
   secrets:
     username: <users | jsonPath {.USERNAME}>
     password: <users | jsonPath {.PASSWORD}>
+    database: <users | jsonPath {.DATABASE}>
+    host: <users | jsonPath {.HOST}>
+    port: <users | jsonPath {.PORT}>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
