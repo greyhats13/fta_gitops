@@ -76,7 +76,7 @@ ingress:
   className: "nginx"
   annotations:
     external-dns.alpha.kubernetes.io/hostname: "users.dev.fta.blast.co.id"
-  external-dns.alpha.kubernetes.io/ttl: "300"
+    external-dns.alpha.kubernetes.io/ttl: "300"
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-fta"
   hosts:
