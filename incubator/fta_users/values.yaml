@@ -126,7 +126,7 @@ autoscaling:
 volumes:
 - name: env-secret
   secret:
-    secretName: fta-svc-users
+    secretName: fta-dev-svc-users
     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
