@@ -1,4 +1,4 @@
-# Default values for fta_users.
+# Default values for fta-uses.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -7,7 +7,7 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: greyhats13/fta_users
+  repository: greyhats13/fta-uses
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -19,14 +19,14 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 appConfig:
-  database: fta_users_db_dev
-  host: "127.0.0.1"
+  database: fta-uses_db_dev
+  host: "10.176.0.3"
   port: 5432
 
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
-  username: <fta_users | jsonPath {.USERNAME} | base64encode>
-  password: <fta_users | jsonPath {.PASSWORD} | base64encode>
+  username: <users | jsonPath {.USERNAME} | base64encode>
+  password: <users | jsonPath {.PASSWORD} | base64encode>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
@@ -36,7 +36,7 @@ serviceAccount:
   automount: true
   # Annotations to add to the service account
   annotations:
-    iam.gke.io/gcp-service-account: "fta-users@fta-platform.iam.gserviceaccount.com"
+    iam.gke.io/gcp-service-account: "fta-svc-users@fta-platform.iam.gserviceaccount.com"
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
