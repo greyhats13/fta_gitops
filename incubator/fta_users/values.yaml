@@ -25,8 +25,8 @@ appConfig:
 
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
-  username: <users | jsonPath {.USERNAME} | base64encode>
-  password: <users | jsonPath {.PASSWORD} | base64encode>
+  username: <path:projects/781497044301/secrets/users#users#latest | jsonPath {.USERNAME} | base64encode>
+  password: <path:projects/781497044301/secrets/users#users#latest | jsonPath {.PASSWORD} | base64encode>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
