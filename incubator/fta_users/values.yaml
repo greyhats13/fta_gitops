@@ -26,14 +26,14 @@ fullnameOverride: ""
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
   annotations:
-    avp.kubernetes.io/path: "projects/781497044301/secrets/users"
+    avp.kubernetes.io/path: "projects/781497044301/secrets/fta-dev-svc-users"
     avp.kubernetes.io/secret-version: "latest"
   secrets:
-    username: <users | jsonPath {.USERNAME}>
-    password: <users | jsonPath {.PASSWORD}>
-    database: <users | jsonPath {.DATABASE}>
-    host: <users | jsonPath {.HOST}>
-    port: <users | jsonPath {.PORT}>
+    username: <fta-dev-svc-users | jsonPath {.USERNAME}>
+    password: <fta-dev-svc-users | jsonPath {.PASSWORD}>
+    database: <fta-dev-svc-users | jsonPath {.DATABASE}>
+    host: <fta-dev-svc-users | jsonPath {.HOST}>
+    port: <fta-dev-svc-users | jsonPath {.PORT}>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
