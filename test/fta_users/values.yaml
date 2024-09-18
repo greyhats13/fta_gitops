@@ -1,4 +1,4 @@
-# Default values for fta-uses.
+# Default values for fta-users.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -7,7 +7,7 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: greyhats13/fta-uses
+  repository: greyhats13/fta-users
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -19,14 +19,14 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 appConfig:
-  database: fta-uses_db_stg
+  database: fta-users_db_stg
   host: "127.0.0.1"
   port: 5432
 
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
-  username: <fta-uses | jsonPath {.USERNAME} | base64encode>
-  password: <fta-uses | jsonPath {.PASSWORD} | base64encode>
+  username: <fta-users | jsonPath {.USERNAME} | base64encode>
+  password: <fta-users | jsonPath {.PASSWORD} | base64encode>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:

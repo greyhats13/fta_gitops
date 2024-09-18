@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "fta-uses.fullname" . }}
+  name: {{ include "fta-users.fullname" . }}
   labels:
-    {{- include "fta-uses.labels" . | nindent 4 }}
+    {{- include "fta-users.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "fta-uses.fullname" . }}
+    name: {{ include "fta-users.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
