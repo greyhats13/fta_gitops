@@ -43,10 +43,10 @@ serviceAccount:
   automount: true
   # Annotations to add to the service account
   annotations:
-    iam.gke.io/gcp-service-account: "fta-svc-users@fta-platform.iam.gserviceaccount.com"
+    iam.gke.io/gcp-service-account: "fta-dev-svc-users@fta-platform.iam.gserviceaccount.com"
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "fta-svc-users"
+  name: "fta-dev-svc-users"
 
 # This is for setting Kubernetes Annotations to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/

@@ -29,11 +29,11 @@ appSecret:
     avp.kubernetes.io/path: "projects/781497044301/secrets/fta-stg-svc-users"
     avp.kubernetes.io/secret-version: "latest"
   secrets:
-    username: <fta-dev-svc-users | jsonPath {.USERNAME}>
-    password: <fta-dev-svc-users | jsonPath {.PASSWORD}>
-    database: <fta-dev-svc-users | jsonPath {.DATABASE}>
-    host: <fta-dev-svc-users | jsonPath {.HOST}>
-    port: <fta-dev-svc-users | jsonPath {.PORT}>
+    username: <fta-stg-svc-users | jsonPath {.USERNAME}>
+    password: <fta-stg-svc-users | jsonPath {.PASSWORD}>
+    database: <fta-stg-svc-users | jsonPath {.DATABASE}>
+    host: <fta-stg-svc-users | jsonPath {.HOST}>
+    port: <fta-stg-svc-users | jsonPath {.PORT}>
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
@@ -43,10 +43,10 @@ serviceAccount:
   automount: true
   # Annotations to add to the service account
   annotations:
-    iam.gke.io/gcp-service-account: "fta-svc-users@fta-platform.iam.gserviceaccount.com"
+    iam.gke.io/gcp-service-account: "fta-stg-svc-users@fta-platform.iam.gserviceaccount.com"
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "fta-svc-users"
+  name: "fta-stg-svc-users"
 
 # This is for setting Kubernetes Annotations to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
