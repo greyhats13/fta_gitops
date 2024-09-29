@@ -5,8 +5,7 @@ serviceAccount:
   name: "fta-mstr-helm-external-dns"
   annotations:
     iam.gke.io/gcp-service-account: "fta-mstr-helm-external-dns@fta-platform.iam.gserviceaccount.com"
-provider:
-  name: google
+provider: google
 policy: sync
 google:
   project: "fta-platform"
