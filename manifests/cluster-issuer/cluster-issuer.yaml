@@ -7,7 +7,7 @@ spec:
     email: imamariefrahmann@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt-${unit}
+      name: letsencrypt-fta
     solvers:
     - http01:
         ingress:
