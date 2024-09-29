@@ -1,9 +1,9 @@
 nodeSelector:
   iam.gke.io/gke-metadata-server-enabled: "true"
 serviceAccount:
-  name: "fta-mstr-addon-external-dns"
+  name: "fta-mstr-addon-salah-dns"
   annotations:
-    iam.gke.io/gcp-service-account: "fta-mstr-addon-external-dns@fta-platform.iam.gserviceaccount.com"
+    iam.gke.io/gcp-service-account: "fta-mstr-addon-salah-dns@fta-platform.iam.gserviceaccount.com"
 provider: google
 policy: sync
 google:
