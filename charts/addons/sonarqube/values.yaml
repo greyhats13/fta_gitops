@@ -1,0 +1,92 @@
+deploymentType: "StatefulSet"
+replicaCount: 1
+revisionHistoryLimit: 10
+edition: "community"
+image:
+  repository: sonarqube
+  tag: 10.6.0-{{ .Values.edition }}
+  pullPolicy: IfNotPresent
+securityContext:
+  fsGroup: 0
+containerSecurityContext:
+  # Sonarqube dockerfile creates sonarqube user as UID and GID 0
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 0
+  seccompProfile:
+    type: RuntimeDefault
+  capabilities:
+    drop: ["ALL"]
+service:
+  type: ClusterIP
+  externalPort: 9000
+  internalPort: 9000
+
+ingress:
+  enabled: true
+  hosts:
+    - name: "sonarqube.fta.blast.co.id"
+      path: /
+      pathType: ImplementationSpecific
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-fta"
+    external-dns.alpha.kubernetes.io/hostname: "sonarqube.fta.blast.co.id"
+  ingressClassName: nginx
+  tls:
+    - secretName: sonarqube-tls
+      hosts:
+        - "sonarqube.fta.blast.co.id"
+nodeSelector:
+  iam.gke.io/gke-metadata-server-enabled: "true"
+
+initSysctl:
+  enabled: true
+  vmMaxMapCount: 524288
+  fsFileMax: 131072
+  nofile: 131072
+  nproc: 8192
+  # image: busybox:1.36
+  securityContext:
+    # Compatible with podSecurity standard privileged
+    privileged: true
+    # if run without root permissions, error "sysctl: permission denied on key xxx, ignoring"
+    runAsUser: 0
+    readOnlyRootFilesystem: true
+  # resources: {}
+
+resources:
+  limits:
+    cpu: 800m
+    memory: 6144M
+    ephemeral-storage: 512000M
+  requests:
+    cpu: 400m
+    memory: 2048M
+    ephemeral-storage: 1536M
+
+# Enabled JDBC Overwrite to use external database
+jdbcOverwrite:
+  enabled: true
+  jdbcUrl: "jdbc:postgresql://34.128.115.248:5432/sonar_db"
+  jdbcUsername: sonar
+  jdbcPassword: <path:projects/781497044301/secrets/fta-mstr-gsm-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
+
+## Unknown bugs: check _helpers.tpl to examine the logic, ref: https://github.com/SonarSource/helm-chart-sonarqube/blob/master/charts/sonarqube/templates/_helpers.tpl
+## We must change the default value from postgresql even if it's not enabled
+postgresql:
+  enabled: false
+  postgresqlUsername: sonar
+  postgresqlPassword: <path:projects/781497044301/secrets/fta-mstr-gsm-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
+  postgresqlDatabase: sonar_db
+  postgresqlServer: "34.128.115.248"
+
+serviceAccount:
+  create: true
+  name: fta-mstr-addon-sonarqube
+  automountToken: true
+  annotations:
+    iam.gke.io/gcp-service-account: "fta-mstr-addon-sonarqube@fta-platform.iam.gserviceaccount.com"
