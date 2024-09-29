@@ -75,6 +75,7 @@ jdbcOverwrite:
   jdbcUsername: sonarqube
   jdbcPassword: <path:projects/781497044301/secrets/fta-mstr-gsm-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
   jdbcSecretName: sonarqube-jdbc
+  jdbcSecretPasswordKey: jdbc-password
 
 ## Unknown bugs: check _helpers.tpl to examine the logic, ref: https://github.com/SonarSource/helm-chart-sonarqube/blob/master/charts/sonarqube/templates/_helpers.tpl
 ## We must change the default value from postgresql even if it's not enabled
