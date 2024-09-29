@@ -1,6 +1,5 @@
 nodeSelector:
   iam.gke.io/gke-metadata-server-enabled: "true"
-
 serviceAccount:
   name: "fta-mstr-addon-external-dns"
   annotations:
