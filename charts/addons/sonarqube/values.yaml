@@ -83,6 +83,9 @@ postgresql:
   postgresqlPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
   postgresqlDatabase: sonarqube_db
   postgresqlServer: "34.128.115.248"
+account:
+  adminPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.ADMIN_PASSWORD}>
+  currentAdminPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.ADMIN_PASSWORD}>
 
 serviceAccount:
   create: true
