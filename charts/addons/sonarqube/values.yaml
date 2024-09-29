@@ -70,7 +70,9 @@ resources:
 
 # Enabled JDBC Overwrite to use external database
 jdbcOverwrite:
-  enabled: true
+  enable: true
+  jdbcUrl: jdbc:postgresql://34.128.115.248:5432/sonarqube_db
+  jdbcUsername: sonarqube
   jdbcSecretName: sonarqube-jdbc
   jdbcSecretPasswordKey: jdbc-password
 
@@ -82,8 +84,8 @@ postgresql:
   postgresqlDatabase: sonarqube_db
   postgresqlServer: "34.128.115.248"
 
-# account:
-#   adminPasswordSecretName: sonarqube-admin
+account:
+  adminPasswordSecretName: sonarqube-admin
 
 serviceAccount:
   create: true
@@ -92,6 +94,9 @@ serviceAccount:
   annotations:
     iam.gke.io/gcp-service-account: "fta-mstr-addon-sonarqube@fta-platform.iam.gserviceaccount.com"
 
-externalextraConfig:
+extraConfig:
   configmaps:
     - external-sonarqube-opts
+  secrets:
+    - sonarqube-jdbc
+    - sonarqube-admin
