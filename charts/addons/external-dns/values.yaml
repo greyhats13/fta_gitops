@@ -1,0 +1,13 @@
+nodeSelector:
+  iam.gke.io/gke-metadata-server-enabled: "true"
+
+serviceAccount:
+  name: "fta-mstr-helm-external-dns"
+  annotations:
+    iam.gke.io/gcp-service-account: "fta-mstr-helm-external-dns@fta-platform.iam.gserviceaccount.com"
+provider:
+  name: google
+policy: sync
+google:
+  project: "fta-platform"
+  zoneVisibility: "public"
