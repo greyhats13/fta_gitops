@@ -79,9 +79,9 @@ jdbcOverwrite:
 ## We must change the default value from postgresql even if it's not enabled
 postgresql:
   enabled: false
-  postgresqlUsername: sonar
+  postgresqlUsername: sonarqube
   postgresqlPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
-  postgresqlDatabase: sonar_db
+  postgresqlDatabase: sonarqube_db
   postgresqlServer: "34.128.115.248"
 
 serviceAccount:
