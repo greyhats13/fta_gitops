@@ -8,5 +8,5 @@ metadata:
     avp.kubernetes.io/secret-version: "latest"
 type: Opaque
 data:
-  password: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD}>
-  currentPassword: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD}>
+  password: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD} | base64encode>
+  currentPassword: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD} | base64encode>

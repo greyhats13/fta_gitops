@@ -8,4 +8,4 @@ metadata:
     avp.kubernetes.io/secret-version: "latest"
 type: Opaque
 data:
-  jdbc-password: <fta-mstr-addon-sonarqube | jsonPath {.JDBC_PASSWORD}>
+  jdbc-password: <fta-mstr-addon-sonarqube | jsonPath {.JDBC_PASSWORD} | base64encode>
