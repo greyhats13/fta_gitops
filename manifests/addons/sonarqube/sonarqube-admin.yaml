@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sonarqube-admin
+  namespace: sonarqube
+  annotations:
+    avp.kubernetes.io/path: "projects/781497044301/secrets/fta-mstr-addon-sonarqube"
+    avp.kubernetes.io/secret-version: "latest"
+type: Opaque
+data:
+  password: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD}>
+  currentPassword: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD}>

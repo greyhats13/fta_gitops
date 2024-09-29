@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sonarqube-jdbc
+  namespace: sonarqube
+  annotations:
+    avp.kubernetes.io/path: "projects/781497044301/secrets/fta-mstr-addon-sonarqube"
+    avp.kubernetes.io/secret-version: "latest"
+type: Opaque
+data:
+  jdbc-password: <fta-mstr-addon-sonarqube | jsonPath {.JDBC_PASSWORD}>

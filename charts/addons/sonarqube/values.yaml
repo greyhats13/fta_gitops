@@ -71,20 +71,18 @@ resources:
 # Enabled JDBC Overwrite to use external database
 jdbcOverwrite:
   enabled: true
-  jdbcUrl: "jdbc:postgresql://34.128.115.248:5432/sonarqube_db"
-  jdbcUsername: sonarqube
-  jdbcPassword: <path:projects/781497044301/secrets/fta-mstr-gsm-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
+  jdbcSecretName: sonarqube-jdbc
+  jdbcSecretPasswordKey: jdbc-password
+
 ## Unknown bugs: check _helpers.tpl to examine the logic, ref: https://github.com/SonarSource/helm-chart-sonarqube/blob/master/charts/sonarqube/templates/_helpers.tpl
 ## We must change the default value from postgresql even if it's not enabled
 postgresql:
   enabled: false
   postgresqlUsername: sonarqube
-  postgresqlPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.JDBC_PASSWORD}>
   postgresqlDatabase: sonarqube_db
   postgresqlServer: "34.128.115.248"
 account:
-  adminPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.ADMIN_PASSWORD}>
-  currentAdminPassword: <path:projects/781497044301/secrets/fta-mstr-addon-sonarqube#fta-mstr-gsm-sonarqube#latest | jsonPath {.ADMIN_PASSWORD}>
+  adminPasswordSecretName: sonarqube-admin
 
 serviceAccount:
   create: true
@@ -92,3 +90,7 @@ serviceAccount:
   automountToken: true
   annotations:
     iam.gke.io/gcp-service-account: "fta-mstr-addon-sonarqube@fta-platform.iam.gserviceaccount.com"
+
+externalextraConfig:
+  configmaps:
+    - external-sonarqube-opts
