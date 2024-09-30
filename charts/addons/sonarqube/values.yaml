@@ -76,13 +76,8 @@ jdbcOverwrite:
   jdbcSecretName: sonarqube-jdbc
   jdbcSecretPasswordKey: jdbc-password
 
-## Unknown bugs: check _helpers.tpl to examine the logic, ref: https://github.com/SonarSource/helm-chart-sonarqube/blob/master/charts/sonarqube/templates/_helpers.tpl
-## We must change the default value from postgresql even if it's not enabled
 postgresql:
   enabled: false
-  postgresqlUsername: sonarqube
-  postgresqlDatabase: sonarqube_db
-  postgresqlServer: "34.128.115.248"
 
 account:
   adminPasswordSecretName: sonarqube-admin

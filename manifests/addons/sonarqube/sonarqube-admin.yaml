@@ -9,4 +9,4 @@ metadata:
 type: Opaque
 data:
   password: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD} | base64encode>
-  currentPassword: <fta-mstr-addon-sonarqube | jsonPath {.ADMIN_PASSWORD} | base64encode>
+  currentPassword: YWRtaW4=
