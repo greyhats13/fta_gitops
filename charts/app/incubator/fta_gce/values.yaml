@@ -8,11 +8,6 @@ ingress:
     networking.gke.io/managed-certificates: fta-dev-svc-gce-managed-cert
     networking.gke.io/v1beta1.FrontendConfig: fta-dev-svc-gce-frontendconfig
     # Add additional annotations as needed
-  tls:
-    - secretName: fta-dev-gce-tls-secret
-      hosts:
-        - profile.dev.fta.blast.co.id
-        - users.dev.fta.blast.co.id
   hosts:
     - host: profile.dev.fta.blast.co.id
       paths:
