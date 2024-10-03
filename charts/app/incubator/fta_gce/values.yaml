@@ -18,14 +18,14 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-          serviceName: fta-dev-svc-profile-fta-profile
+          serviceName: fta-dev-svc-profile
           servicePort: 8000
-    - host: users.dev.fta.blast.co.id
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-          serviceName: fta-dev-svc-users-fta-users
-          servicePort: 3000
+    # - host: users.dev.fta.blast.co.id
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+    #       serviceName: fta-dev-svc-users-fta-users
+    #       servicePort: 3000
   gke:
     frontendConfig:
       redirectToHttps:
