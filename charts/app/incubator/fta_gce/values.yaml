@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  className: gce
+  controller: gke
   annotations:
     kubernetes.io/ingress.class: gce
     external-dns.alpha.kubernetes.io/hostname: profile.dev.fta.blast.co.id,users.dev.fta.blast.co.id
