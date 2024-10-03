@@ -34,4 +34,4 @@ ingress:
       create: true
       domains:
         - profile.dev.fta.blast.co.id
-        - users.dev.fta.blast.co.id
+        # - users.dev.fta.blast.co.id
