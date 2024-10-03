@@ -2,10 +2,10 @@
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: {{ include "fta-dev-gce-app.fullname" . }}-managed-cert
+  name: {{ include "fta-dev-svc-gce.fullname" . }}-managed-cert
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "fta-dev-gce-app.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
 spec:
   domains:
     - {{ .Values.ingress.hostname | default .Values.global.domain }}

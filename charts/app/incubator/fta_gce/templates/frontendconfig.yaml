@@ -2,10 +2,10 @@
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
-  name: {{ include "fta-dev-gce-app.fullname" . }}-frontendconfig
+  name: {{ include "fta-dev-svc-gce.fullname" . }}-frontendconfig
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "fta-dev-gce-app.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
 spec:
   {{- toYaml .Values.ingress.gke.frontendConfig | nindent 2 }}
 {{- end }}

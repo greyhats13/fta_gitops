@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "fta-dev-gce-app.fullname" . }}
+  name: {{ include "fta-dev-svc-gce.fullname" . }}
   labels:
-    {{- include "fta-dev-gce-app.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

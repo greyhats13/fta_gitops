@@ -2,10 +2,10 @@
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: {{ include "fta-dev-gce-app.fullname" . }}-backendconfig
+  name: {{ include "fta-dev-svc-gce.fullname" . }}-backendconfig
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "fta-dev-gce-app.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
 spec:
   {{- toYaml .Values.ingress.gke.backendConfig | nindent 2 }}
 {{- end }}
