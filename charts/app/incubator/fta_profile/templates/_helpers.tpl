@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "fta-profile.name" -}}
+{{- define "fta-dev-svc-profile.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "fta-profile.fullname" -}}
+{{- define "fta-dev-svc-profile.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "fta-profile.chart" -}}
+{{- define "fta-dev-svc-profile.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "fta-profile.labels" -}}
-helm.sh/chart: {{ include "fta-profile.chart" . }}
-{{ include "fta-profile.selectorLabels" . }}
+{{- define "fta-dev-svc-profile.labels" -}}
+helm.sh/chart: {{ include "fta-dev-svc-profile.chart" . }}
+{{ include "fta-dev-svc-profile.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "fta-profile.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "fta-profile.name" . }}
+{{- define "fta-dev-svc-profile.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "fta-dev-svc-profile.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "fta-profile.serviceAccountName" -}}
+{{- define "fta-dev-svc-profile.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "fta-profile.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "fta-dev-svc-profile.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

@@ -27,15 +27,9 @@ ingress:
           serviceName: fta-dev-svc-users-fta-users
           servicePort: 3000
   gke:
-    backendConfigs:
-      - name: fta-dev-svc-gce-backendconfig
-        spec:
-          timeoutSec: 30
     frontendConfig:
-      name: fta-dev-svc-gce-frontendconfig
-      spec:
-        redirectToHttps:
-          enabled: true
+      redirectToHttps:
+        enabled: true
     managedCertificate:
       create: true
       domains:

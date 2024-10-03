@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "fta-profile.fullname" . }}
+  name: {{ include "fta-dev-svc-profile.fullname" . }}
   labels:
-    {{- include "fta-profile.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-profile.labels" . | nindent 4 }}
   {{- with .Values.service.annotations }}
   annotations:
     {{- range $key, $value := . }}
@@ -18,4 +18,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "fta-profile.selectorLabels" . | nindent 4 }}
+    {{- include "fta-dev-svc-profile.selectorLabels" . | nindent 4 }}

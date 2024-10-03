@@ -1,4 +1,4 @@
-{{- if and .Values.ingress.enabled (eq .Values.ingress.controller "gke") .Values.ingress.gke.backendConfig }}
+{{- if .Values.ingress.backendConfig }}
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
@@ -7,5 +7,5 @@ metadata:
   labels:
     {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
 spec:
-  {{- toYaml .Values.ingress.gke.backendConfig | nindent 2 }}
+  {{- toYaml .Values.ingress.backendConfig | nindent 2 }}
 {{- end }}

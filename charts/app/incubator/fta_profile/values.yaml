@@ -1,4 +1,4 @@
-# Default values for fta-profile.
+# Default values for fta-dev-svc-profile.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -64,10 +64,12 @@ podAnnotations: {}
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -83,7 +85,7 @@ service:
   port: 8000
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
-    cloud.google.com/backend-config: '{"default": "fta-dev-svc-gce-backendconfig"}'
+    cloud.google.com/backend-config: '{"default": "fta-dev-svc-profile-backendconfig"}'
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -102,14 +104,26 @@ resources:
     memory: 512Mi
 
 # # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-# livenessProbe:
-#   httpGet:
-#     path: /health
-#     port: http
-# readinessProbe:
-#   httpGet:
-#     path: /health
-#     port: http
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  successThreshold: 1
+  timeoutSeconds: 3
+  failureThreshold: 3
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  successThreshold: 1
+  timeoutSeconds: 3
+  failureThreshold: 3
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
@@ -120,14 +134,16 @@ autoscaling:
   targetMemoryUtilizationPercentage: 75
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes:
+  []
   # - name: env-secret
   #   secret:
   #     secretName: fta-dev-svc-profile
   #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+  []
   # - name: env-secret
   #   mountPath: "/app/.env"
   #   subPath: .env
@@ -139,6 +155,16 @@ nodeSelector:
 tolerations: []
 
 affinity: {}
+
+backendConfigs:
+  healthCheck:
+    checkIntervalSec: 30
+    timeoutSec: 5
+    healthyThreshold: 1
+    unhealthyThreshold: 2
+    type: HTTP
+    requestPath: /health
+    port: 8000
 
 podDisruptionBudget:
   enabled: true

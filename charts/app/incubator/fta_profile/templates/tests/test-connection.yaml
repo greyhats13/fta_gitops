@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "fta-profile.fullname" . }}-test-connection"
+  name: "{{ include "fta-dev-svc-profile.fullname" . }}-test-connection"
   labels:
-    {{- include "fta-profile.labels" . | nindent 4 }}
+    {{- include "fta-dev-svc-profile.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "fta-profile.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "fta-dev-svc-profile.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
