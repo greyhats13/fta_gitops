@@ -85,6 +85,10 @@ service:
     cloud.google.com/neg: '{"ingress": true}'
     cloud.google.com/backend-config: '{"default": "fta-dev-svc-profile-backendconfig"}'
 
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  enabled: false
+
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -135,3 +139,7 @@ nodeSelector:
 tolerations: []
 
 affinity: {}
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1

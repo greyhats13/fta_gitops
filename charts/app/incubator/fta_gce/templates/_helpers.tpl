@@ -49,14 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "fta-dev-gce-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "fta-dev-gce-app.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "fta-dev-gce-app.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
