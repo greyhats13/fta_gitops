@@ -1,0 +1,47 @@
+ingress:
+  enabled: true
+  className: gce
+  annotations:
+    kubernetes.io/ingress.class: gce
+    external-dns.alpha.kubernetes.io/hostname: profile.dev.fta.blast.co.id,users.dev.fta.blast.co.id
+    external-dns.alpha.kubernetes.io/ttl: "300"
+    networking.gke.io/managed-certificates: fta-dev-gce-cert
+    networking.gke.io/v1beta1.FrontendConfig: fta-dev-gce-frontendconfig
+    # Add additional annotations as needed
+  tls:
+    - secretName: fta-dev-gce-tls-secret
+      hosts:
+        - profile.dev.fta.blast.co.id
+        - users.dev.fta.blast.co.id
+  hosts:
+    - host: profile.dev.fta.blast.co.id
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          serviceName: fta-dev-svc-profile-fta-profile
+          servicePort: 8000
+    - host: users.dev.fta.blast.co.id
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          serviceName: fta-dev-svc-users-fta-users
+          servicePort: 3000
+  gke:
+    backendConfigs:
+      - name: fta-dev-svc-profile-backendconfig
+        spec:
+          timeoutSec: 30
+      - name: fta-dev-svc-profile-backendconfig
+        spec:
+          timeoutSec: 60
+    frontendConfig:
+      name: fta-dev-gce-frontendconfig
+      spec:
+        redirectToHttps:
+          enabled: true
+    managedCertificate:
+      create: true
+      name: fta-dev-gce-cert
+      domains:
+        - profile.dev.fta.blast.co.id
+        - users.dev.fta.blast.co.id

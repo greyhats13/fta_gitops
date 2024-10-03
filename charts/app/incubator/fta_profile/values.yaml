@@ -81,25 +81,9 @@ service:
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8000
-
-# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
-ingress:
-  enabled: true
-  className: "nginx"
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "profile.dev.fta.blast.co.id"
-    external-dns.alpha.kubernetes.io/ttl: "300"
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-fta"
-  hosts:
-    - host: profile.dev.fta.blast.co.id
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: profile-tls
-      hosts:
-        - profile.dev.fta.blast.co.id
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/backend-config: '{"default": "fta-dev-svc-profile-backendconfig"}'
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
