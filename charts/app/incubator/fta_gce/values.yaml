@@ -15,6 +15,10 @@ ingress:
           pathType: Prefix
           serviceName: fta-dev-svc-profile
           servicePort: 8000
+        - path: /v1/healthcheck
+          pathType: Prefix
+          serviceName: fta-dev-svc-profile
+          servicePort: 8000
     # - host: users.dev.fta.blast.co.id
     #   paths:
     #     - path: /
