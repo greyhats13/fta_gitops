@@ -11,8 +11,8 @@ ingress:
   hosts:
     - host: profile.dev.fta.blast.co.id
       paths:
-        - path: /v1
-          pathType: ImplementationSpecific
+        - path: /
+          pathType: Prefix
           serviceName: fta-dev-svc-profile
           servicePort: 8000
     # - host: users.dev.fta.blast.co.id
