@@ -8,8 +8,7 @@ metadata:
     {{- include "fta-dev-svc-gce.labels" . | nindent 4 }}
 spec:
   domains:
-    - {{ .Values.ingress.hostname | default .Values.global.domain }}
-    {{- with .Values.ingress.gke.managedCertificate.extraDomains }}
-    {{- toYaml . | nindent 4 }}
+    {{- range .Values.ingress.gke.managedCertificate.domains }}
+    - {{ . | quote }}
     {{- end }}
 {{- end }}
