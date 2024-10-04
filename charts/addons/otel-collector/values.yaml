@@ -9,7 +9,7 @@ serviceAccount:
   create: true
   annotations:
     iam.gke.io/gcp-service-account: fta-mstr-addon-otel-collector@fta-platform.iam.gserviceaccount.com
-  name: fta-mstr-addon-open-telemetry
+  name: fta-mstr-addon-otel-collector
 
 alternateConfig:
   receivers:
