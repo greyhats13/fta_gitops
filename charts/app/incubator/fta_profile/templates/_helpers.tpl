@@ -61,10 +61,23 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
+{{/*
+Generate a checksum for ConfigMap
+*/}}
 {{- define "fta-dev-svc-profile.configmapHash" -}}
-{{- .Values.appConfig | toYaml | sha256sum }}
+{{- toYaml .Values.appConfig | sha256sum }}
 {{- end }}
 
+{{/*
+Generate a checksum for Secret
+*/}}
 {{- define "fta-dev-svc-profile.secretHash" -}}
-{{- .Values.appSecret.secrets | toYaml | sha256sum }}
+{{- toYaml .Values.appSecret.secrets | sha256sum }}
+{{- end }}
+
+{{/*
+Combine both checksums
+*/}}
+{{- define "fta-dev-svc-profile.configSecretChecksum" -}}
+{{ include "fta-dev-svc-profile.configmapHash" . }}-{{ include "fta-dev-svc-profile.secretHash" . }}
 {{- end }}
