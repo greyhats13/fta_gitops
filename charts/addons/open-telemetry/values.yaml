@@ -1,8 +1,8 @@
 mode: deployment
 
 image:
-  repository: otelcontribcol-dev
-  tag: "0.0.1"
+  repository: otel/opentelemetry-collector
+  tag: "0.88.0"
   pullPolicy: IfNotPresent
 
 command:
