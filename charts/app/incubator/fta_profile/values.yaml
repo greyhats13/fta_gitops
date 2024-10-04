@@ -19,8 +19,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 appConfig:
-  annotations:
-    configmap-hash: '{{ include (print $.Template.BasePath "configmap.yaml") . | sha256sum }}'
   ## Application configuration
   APP_HOST: "0.0.0.0"
   APP_PORT: "8000"
@@ -41,7 +39,6 @@ appConfig:
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
   annotations:
-    secret-hash: "{{ (index .Values 'secretName' | sha256sum) }}"
     avp.kubernetes.io/path: "projects/781497044301/secrets/fta-dev-svc-profile"
     avp.kubernetes.io/secret-version: "latest"
   secrets:

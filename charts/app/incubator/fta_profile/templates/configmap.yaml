@@ -3,10 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
-  {{- with .Values.appConfig.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
 data:
    {{- range $key, $value := .Values.appConfig }}
    {{ $key }}: {{ $value | quote }}
