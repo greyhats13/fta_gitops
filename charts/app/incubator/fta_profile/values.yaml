@@ -34,7 +34,7 @@ appConfig:
   GZIP_MIN_LENGTH: "512"
   # Trusted Hosts
   TRUSTED_HOSTS: "*"
-  OTEL_EXPORTER_OTLP_ENDPOINT: "http://fta-mstr-addon-open-telemetry-opentelemetry-collector:4317"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://fta-mstr-addon-opentelemetry-collector.dev.svc.gke.fta.blast.co.id.:4317"
   OTEL_EXPORTER_OTLP_HEADERS: ""
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
