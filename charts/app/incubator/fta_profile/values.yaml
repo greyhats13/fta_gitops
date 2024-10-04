@@ -19,6 +19,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 appConfig:
+  annotations:
+    configmap-hash: '{{ include (print $.Template.BasePath "configmap.yaml") . | sha256sum }}'
   ## Application configuration
   APP_HOST: "0.0.0.0"
   APP_PORT: "8000"
