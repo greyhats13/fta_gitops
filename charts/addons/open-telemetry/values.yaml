@@ -22,7 +22,6 @@ alternateConfig:
     googlecloud:
       project: fta-platform
       trace:
-        endpoint: "cloudtrace.googleapis.com"
         use_insecure: false
 
   processors:
