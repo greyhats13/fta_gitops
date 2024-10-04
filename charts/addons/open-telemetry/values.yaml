@@ -21,7 +21,7 @@ config:
   exporters:
     googlecloud:
       project: fta-platform  # Replace with your GCP project ID
-      traces:
+      trace:
         endpoint: "cloudtrace.googleapis.com"
         use_insecure: false
 
@@ -34,7 +34,7 @@ config:
 
   service:
     pipelines:
-      trace:
+      traces:
         receivers: [otlp]
         processors: [memory_limiter, batch]
         exporters: [googlecloud]
