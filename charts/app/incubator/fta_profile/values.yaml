@@ -35,7 +35,7 @@ appConfig:
   # Trusted Hosts
   TRUSTED_HOSTS: "*"
   OTEL_EXPORTER_OTLP_ENDPOINT: "http://fta-mstr-addon-open-telemetry-opentelemetry-collector:4317"
-  # OTEL_EXPORTER_OTLP_HEADERS": ""
+  OTEL_EXPORTER_OTLP_HEADERS": ""
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
   annotations:
