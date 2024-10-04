@@ -61,7 +61,9 @@ serviceAccount:
 
 # This is for setting Kubernetes Annotations to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-podAnnotations: {}
+podAnnotations:
+    configmap-hash: "{{ include (print $.Template.BasePath \"configmap.yaml\") . | sha256sum }}"
+    secret-hash: "{{ .Values.appSecret | sha256sum }}"
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}

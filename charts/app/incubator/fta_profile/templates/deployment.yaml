@@ -17,8 +17,6 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-        configmap-hash: "{{ include (print $.Template.BasePath \"configmap.yaml\") . | sha256sum }}"
-        secret-hash: "{{ .Values.appSecret | sha256sum }}"
       labels:
         {{- include "fta-dev-svc-profile.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
