@@ -60,3 +60,11 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "fta-dev-svc-profile.configmapHash" -}}
+{{- .Values.appConfig | toYaml | sha256sum }}
+{{- end }}
+
+{{- define "fta-dev-svc-profile.secretHash" -}}
+{{- .Values.appSecret.secrets | toYaml | sha256sum }}
+{{- end }}

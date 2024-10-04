@@ -15,10 +15,10 @@ spec:
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
-        configmap-hash: "{{ .Values.appConfig | sha256sum }}"
-        secret-hash: "{{ .Values.appSecret | sha256sum }}"
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        configmap-hash: "{{ include "fta-dev-svc-profile.configmapHash" . }}"
+        secret-hash: "{{ include "fta-dev-svc-profile.secretHash" . }}"
       labels:
         {{- include "fta-dev-svc-profile.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
