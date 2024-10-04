@@ -32,7 +32,7 @@ appConfig:
   CORS_ALLOW_METHODS: "GET,POST,PUT,DELETE"
   CORS_ALLOW_HEADERS: "*"
   CORS_ALLOW_CREDENTIALS: "False"
-  CORS_MAX_AGES: "86400"
+  CORS_MAX_AGES: "3600"
   GZIP_MIN_LENGTH: "512"
   # Trusted Hosts
   TRUSTED_HOSTS: "*"
@@ -41,6 +41,7 @@ appConfig:
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
   annotations:
+    secret-hash: "{{ (index .Values 'secretName' | sha256sum) }}"
     avp.kubernetes.io/path: "projects/781497044301/secrets/fta-dev-svc-profile"
     avp.kubernetes.io/secret-version: "latest"
   secrets:
