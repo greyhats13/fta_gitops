@@ -11,7 +11,7 @@ serviceAccount:
     iam.gke.io/gcp-service-account: fta-mstr-addon-open-telemetry@fta-platform.iam.gserviceaccount.com
   name: fta-mstr-addon-open-telemetry
 
-alternateConfig:
+Config:
   receivers:
     otlp:
       protocols:
