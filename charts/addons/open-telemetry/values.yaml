@@ -34,7 +34,7 @@ config:
 
   service:
     pipelines:
-      traces:
+      trace:
         receivers: [otlp]
         processors: [memory_limiter, batch]
         exporters: [googlecloud]
