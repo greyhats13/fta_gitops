@@ -36,7 +36,7 @@ Config:
     pipelines:
       traces:
         receivers: [otlp]
-        processors: [memory_limiter, batch]
+        processors: [batch]
         exporters: [googlecloud]
 
 resources:
