@@ -22,7 +22,7 @@ appConfig:
   ## Application configuration
   APP_HOST: "0.0.0.0"
   APP_PORT: "8000"
-  APP_LOG_LEVEL: "error"
+  APP_LOG_LEVEL: "info"
   APP_ENV: "dev"
   APP_NAME: "fta_profile"
   ## CORS Configuration
@@ -37,6 +37,7 @@ appConfig:
   OTEL_EXPORTER_OTLP_ENDPOINT: "fta-mstr-addon-otel-collector-opentelemetry-collector.otel-collector.svc.gke.fta.blast.co.id:4317"
   OTEL_EXPORTER_OTLP_INSECURE: "true"
   OTEL_EXPORTER_OTLP_HEADERS: ""
+  OTEL_SAMPLING_RATE: "1.0"
 # ArgoCD Vault Plugin will replace the placeholders with the actual values from the Google Secret Manager
 appSecret:
   annotations:
